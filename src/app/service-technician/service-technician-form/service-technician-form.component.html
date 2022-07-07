@@ -1,0 +1,86 @@
+<section class="container-fluid">
+    <h3 class="text-center">Registrar servicio</h3>
+    <form [formGroup]="form" (ngSubmit)="onSubmitForm()" class="needs-validation">
+        <div class="col-12 my-2">
+            <label class="form-label">Tipo de documento del técnico</label>
+            <select
+                class="form-select"
+                [formControl]="technicianDocumentTypeControl"
+                [class.is-invalid]="hasError(form, 'technicianDocument') && hasError(technicianDocumentGroup,'type')">
+                <option value="CC">CC</option>
+                <option value="Cédula de extrangería">CE</option>
+            </select>
+            <div class="invalid-feedback">
+                Tipo de documento del técnico {{hasInvalidTechnicianDocument? 'no válido' : 'requerido'}}
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <label class="form-label">Número de documento del técnico</label>
+            <input 
+                class="form-control"
+                [class.is-invalid]="hasError(form, 'technicianDocument')"
+                type="text"
+                [formControl]="technicianDocumentNumberControl"
+                placeholder="Ingrese el ID del técnico"
+                size="20"
+                required>
+            <div class="invalid-feedback">
+                Número de documento del técnico {{hasInvalidTechnicianDocument? 'no válido' : 'requerido'}}
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <label class="form-label">Número del servicio</label>
+            <input 
+                class="form-control"
+                [class.is-invalid]="hasError(form, 'idService')"
+                type="text"
+                formControlName="idService"
+                placeholder="Ingrese el número del servicio"
+                size="20"
+                required>
+            <div class="invalid-feedback">
+                Número del servicio {{hasInvalidIdService? 'no válido' : 'requerido'}}
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <label class="form-label">Fecha de inicio</label>
+            <input 
+                class="form-control"
+                [class.is-invalid]="hasError(form, 'startDate') || hasInvalidIntervalDate"
+                type="datetime-local"
+                formControlName="startDate"
+                [min]="minDate"
+                [max]="maxDate"
+                name="startDate"
+                required>
+            <div class="invalid-feedback">
+                Fecha de inicio {{hasInvalidStartDate || hasInvalidIntervalDate? 'no válida' : 'requerida'}}
+            </div>
+        </div>
+
+        <div class="col-12 my-2">
+            <label class="form-label">Fecha fin</label>
+            <input
+                class="form-control"
+                [class.is-invalid]="hasError(form, 'finalDate') || hasInvalidIntervalDate"
+                type="datetime-local"
+                [min]="minDate"
+                [max]="maxDate"
+                formControlName="finalDate"
+                name="finalDate"
+                required>
+            <div class="invalid-feedback">
+                Fecha de fin {{hasInvalidFinalDate || hasInvalidIntervalDate? 'no válida' : 'requerida'}}
+            </div>
+        </div>
+        <div class="alert alert-danger my-3" role="alert" *ngIf="errorMessage">
+            {{ errorMessage }}
+        </div>
+        <div class="col-12 my-3">
+            <button type="submit" class="btn btn-primary" [disabled]="form.pending">Guardar</button>
+        </div>
+    </form>
+</section>

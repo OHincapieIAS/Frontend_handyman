@@ -1,0 +1,64 @@
+<div *ngIf="hours != undefined && hours.length == 0" class="alert--noservice">
+    <h3>No hay servicios del técnico en ese rango de fechas.</h3>
+</div>
+
+
+<div *ngIf="hours != undefined && hours.length > 0">
+    <div *ngFor="let service of hours" class="content">
+        <div class="row subtitle">
+            <div class="col">
+                <span># Servicio:<br></span> {{service.idService}}
+            </div>
+            <div class="col">
+                <span>Fecha inicial:<br></span> {{service.startDate}}
+            </div>
+            <div class="col">
+                <span>Fecha final:<br></span> {{service.finalDate}}
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Tipo de hora</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Hora normal</th>
+                <td>{{service.regularHours}}</td>
+              </tr>
+              <tr>
+                <th>Hora nocturna</th>
+                <td>{{service.nightHour}}</td>
+              </tr>
+              <tr>
+                <th>Hora dominical</th>
+                <td>{{service.sundayHour}}</td>
+              </tr>
+              <tr>
+                <th>Hora normal extra</th>
+                <td>{{service.regularHourExtra}}</td>
+              </tr>
+              <tr>
+                <th>Hora nocturna extra</th>
+                <td>{{service.nightHourExtra}}</td>
+              </tr>
+              <tr>
+                <th>Hora dominical extra</th>
+                <td>{{service.sundayHourExtra}}</td>
+              </tr>
+              <tr>
+                <th>Horas totales del servicio en el rango</th>
+                <td>{{service.totalHoursByService}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="row subtitle">
+        <p><span>Total de horas en el rango de fechas:<br></span> {{hours[hours.length - 1].totalHours}}</p>
+    </div>
+    
+    
+</div>

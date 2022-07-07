@@ -1,0 +1,13 @@
+.content{
+    margin: 2rem 0;
+}
+.subtitle{
+    text-align: center;
+}
+span{
+    font-weight: bold;
+}
+.alert--noservice{
+    text-align: center;
+    margin: 1rem auto;
+}
